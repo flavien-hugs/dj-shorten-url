@@ -1,0 +1,42 @@
+<h1>Le raccourcisseur d'URL</h1>
+
+<p><a href="{% url 'new_url' %}">Shorten URL &amp; LINK.</a></p>
+
+<p>Liste des URL raccourcies :</p>
+<ul>
+    {% for short in object_list %}
+    	<li>
+            <a href="{% url 'update_url' short.code %}">Modifier l'URL</a>
+            <a href="{% url 'delete_url' short.code %}">Supprimer l'URL</a>
+            {{ short.url }} via
+    		<a href="http://{{ request.get_host }}{% url 'redirect_url' short.code %}" target="_blank">
+    			https://{{ request.get_host }}{% url 'redirect_url' short.code %}
+    		</a>
+    		{% if short.nb_acces %}
+    			vues : {{ short.nb_acces }}
+    		{% endif %}
+    	</li>
+    {% empty %}
+    	<li>Aucune url disponible pour le moment.</li>
+    {% endfor %}
+
+
+{# Mise en forme de la pagination ici #}
+	{% if is_paginated %}
+		<div class="pagination">
+			   {% if page_obj.has_previous %}
+				   <a href="{% url "liste_url" %}?page={{ page_obj.previous_page_number }}">Précédente</a> —
+			   {% endif %}
+
+               {% for object in page_obj.paginator.page_range %}
+                   <li>
+                        <a href="{% url "liste_url" %}?page={{ forloop.counter }}">{{ forloop.counter }}</a>
+                    </li>
+               {% endfor %}
+
+			   {% if page_obj.has_next %}
+				  — <a href="{% url "liste_url" %}?page={{ page_obj.next_page_number }}">Suivante</a>
+			   {% endif %}
+		</div>
+	{% endif %}
+</ul>
