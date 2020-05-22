@@ -1,7 +1,29 @@
-<h1>Raccourcir une URL</h1>
+{% extends "shortenURL/index.html" %}
 
-<form method="post" action="{% url 'new_url' %}">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit"/>
-</form>
+{% block content %}
+
+	<div class="page-header theme-bg-dark py-5 text-center position-relative">
+        <div class="theme-bg-shapes-right"></div>
+        <div class="theme-bg-shapes-left"></div>
+        <div class="container">
+            <h1 class="page-heading single-col-max mx-auto">Réducteur d’URL</h1>
+            <div class="page-intro single-col-max mx-auto">Simplifiez vos liens et suivez les statistiques de clic avancées</div>
+            <div class="main-search-box pt-3 d-block mx-auto">
+                <form class="search-form w-100" method="post" action="{% url 'new_url' %}">
+                	{% csrf_token %}
+                    <input id="{{ form.url.id_for_label }}" type="text" placeholder="Collez votre URL longue ici et réduisez-la" name="{{ form.url.name }}" class="form-control search-input">
+                    <button type="submit" class="btn search-btn" value="Search">
+                        <i class="fas fa-arrow-alt-circle-right ml-2"></i>
+                    </button>
+                </form>
+            </div>
+
+            <p class="text-white small py-3">En utilisant notre service, vous acceptez les conditions d’utilisation et la politique de confidentialité.</p>
+        </div>
+    </div><!--end page-header-->
+
+
+
+    {% block listURL %}{% endblock listURL %}
+    {% block cta %}{% endblock cta %}	
+{% endblock content %}

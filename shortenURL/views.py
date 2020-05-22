@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.list import ListView
 from django.views.generic import RedirectView
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 
 from shortenURL.models import Shorten
 from shortenURL.forms import ShortenForm
@@ -15,10 +15,9 @@ class ListURLView(ListView):
     model = Shorten
     template_name = 'shortenURL/index.html'
     paginate_by = 5
-    ordering = ['date']
 
     def get_queryset(self):
-        return Shorten.objects.order_by('-nb_acces')
+        return Shorten.objects.order_by('-date')
 
 
 # CBV : Create New URL
@@ -26,7 +25,9 @@ class CreateNewURL(CreateView):
     model = Shorten
     template_name = 'shortenURL/newurl.html'
     form_class = ShortenForm
-    success_url = reverse_lazy('liste_url')
+
+    def get_success_url(self):
+        return reverse('liste_url')
 
 
 # CBV : Update URL 
@@ -62,12 +63,19 @@ class DeleteURL(DeleteView):
         return get_object_or_404(Shorten, code=code)
 
 
-# CBV : Redirect URL
+"""# CBV : Redirect URL
 class RedirectURL(RedirectView):
     permanent = True
 
-    def get_redirect_url(self, *args, **kwargs):
+    def get_redirect_url(self, code, *args, **kwargs):
         url = get_object_or_404(Shorten, code=code)
         url.nb_acces += 1
         url.save()
-        return super().get_redirect_url(*args, **kwargs)
+        return super().get_redirect_url(*args, **kwargs)"""
+
+def redirection(request, code):
+    url = get_object_or_404(Shorten, code=code)
+    url.nb_acces += 1
+    url.save()
+
+    return redirect(url.url, permanent=True)
