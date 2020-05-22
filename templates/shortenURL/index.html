@@ -25,7 +25,7 @@
 	{% if is_paginated %}
 		<div class="pagination">
 			   {% if page_obj.has_previous %}
-				   <a href="{% url "liste_url" %}?page={{ page_obj.previous_page_number }}">Précédente</a> —
+				   <a href="{% url "liste_url" %}?page={{ page_obj.previous_page_number }}">Précédent</a> —
 			   {% endif %}
 
                {% for object in page_obj.paginator.page_range %}
@@ -35,7 +35,7 @@
                {% endfor %}
 
 			   {% if page_obj.has_next %}
-				  — <a href="{% url "liste_url" %}?page={{ page_obj.next_page_number }}">Suivante</a>
+				  — <a href="{% url "liste_url" %}?page={{ page_obj.next_page_number }}">Suivant</a>
 			   {% endif %}
 		</div>
 	{% endif %}

@@ -15,6 +15,7 @@ class ListURLView(ListView):
     model = Shorten
     template_name = 'shortenURL/index.html'
     paginate_by = 5
+    ordering = ['date']
 
     def get_queryset(self):
         return Shorten.objects.order_by('-nb_acces')
