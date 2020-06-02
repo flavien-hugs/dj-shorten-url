@@ -2,21 +2,44 @@
     <nav aria-label="Page navigation example">
         <ul class="pagination pl-0 justify-content-center">
             {% if page_obj.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="{% url "liste_url" %}?page={{ page_obj.previous_page_number }}">
+                        <i class="mr-2 fas fa-angle-left"></i> Précédent
+                    </a>
+                </li>
+            {% else %}
                 <li class="page-item disabled">
-                    <a href="{% url "liste_url" %}?page={{ page_obj.previous_page_number }}" class="page-link">Précédent</a>
+                    <a class="page-link">
+                        <i class="mr-2 fas fa-angle-left"></i> Précédent
+                    </a>
                 </li>
             {% endif %}
 
             {% for object in page_obj.paginator.page_range %}
-                <li class="page-item">
-                    <a class="page-link" href="{% url "liste_url" %}?page={{ forloop.counter }}">{{ forloop.counter }}</a>
-                </li>
+                {% if object == page_obj.number %}
+                    <li class="page-item active">
+                        <a class="page-link" href="{% url "liste_url" %}?page={{ object }}">{{ object }}
+                        </a>
+                    </li>
+                {% else %}
+                    <li class="page-item">
+                        <a class="page-link" href="{% url "liste_url" %}?page={{ object }}">{{ object }}
+                        </a>
+                    </li>
+                    
+                {% endif %}
             {% endfor %}
 
             {% if page_obj.has_next %}
-            <li class="page-item">
-                <a class="page-link" href="{% url "liste_url" %}?page={{ page_obj.next_page_number }}">Suivant</a>
-            </li>
+                <li class="page-item">
+                    <a class="page-link" href="{% url "liste_url" %}?page={{ page_obj.next_page_number }}">Suivant <i class="ml-2 fas fa-angle-right"></i></a>
+                </li>
+            {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link">
+                        Suivant<i class="ml-2 fas fa-angle-right"></i> 
+                    </a>
+                </li>
             {% endif %}
         </ul>
     </nav>
