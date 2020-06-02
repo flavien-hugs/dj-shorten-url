@@ -1,20 +1,19 @@
 # shortenURL/views.py
 
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import redirect, get_object_or_404
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.list import ListView
-from django.views.generic import RedirectView
 from django.urls import reverse_lazy, reverse
 
 from shortenURL.models import Shorten
-from shortenURL.forms import ShortenForm
+from shortenURL.forms import ShortenForm, ShortenFormCode
 
 
 # CBV : Liste URL
 class ListURLView(ListView):
     model = Shorten
     template_name = 'shortenURL/index.html'
-    paginate_by = 5
+    paginate_by = 10
 
     def get_queryset(self):
         return Shorten.objects.order_by('-date')
@@ -33,18 +32,19 @@ class CreateNewURL(CreateView):
 # CBV : Update URL 
 class UpdateURL(UpdateView):
     model = Shorten
-    template_name = 'shortenURL/newurl.html'
-    form_class = ShortenForm
+    form_class = ShortenFormCode
+    template_name = 'shortenURL/updateURL.html'
     success_url = reverse_lazy('liste_url')
 
-    def form_valid(self, form):
-        form.save()
-        message.success(self.request, "Mise à jour effectuée avec succès.")
-        return HttpResponseRedirect(self.get_success_url())
-
     def get_object(self, queryset=None):
-        code = self.kwargs.get('code', None)
+        code = self.kwargs.get('code',None)
+        print(code)
         return get_object_or_404(Shorten, code=code)
+
+    def form_valid(self, queryset=None):
+        form = ShortenFormCode(instance=self.get_object)
+        form.save()
+        return HttpResponseRedirect(self.get_success_url())
 
 
 # CBV : Delete URL 
@@ -55,7 +55,6 @@ class DeleteURL(DeleteView):
 
     def form_valid(self, queryset=None):
         self.object = form.save()
-        message.success(self.request, "Mise à jour effectuée avec succès.")
         return HttpResponseRedirect(self.get_success_url())
 
     def get_object(self, queryset=None):
@@ -63,16 +62,7 @@ class DeleteURL(DeleteView):
         return get_object_or_404(Shorten, code=code)
 
 
-"""# CBV : Redirect URL
-class RedirectURL(RedirectView):
-    permanent = True
-
-    def get_redirect_url(self, code, *args, **kwargs):
-        url = get_object_or_404(Shorten, code=code)
-        url.nb_acces += 1
-        url.save()
-        return super().get_redirect_url(*args, **kwargs)"""
-
+# Fonction redirect
 def redirection(request, code):
     url = get_object_or_404(Shorten, code=code)
     url.nb_acces += 1

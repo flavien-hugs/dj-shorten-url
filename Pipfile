@@ -4,6 +4,9 @@ verify_ssl = true
 
 [packages]
 Django = "*"
+gunicorn = "*"
+django-heroku = "*"
+django-toolbelt = "*"
 
 [requires]
 python_version = "3.8.3"

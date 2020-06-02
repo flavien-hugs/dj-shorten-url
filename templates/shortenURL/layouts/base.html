@@ -1,0 +1,28 @@
+{% spaceless %}
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		{% include "shortenURL/includes/meta.html" %}
+		{% include "shortenURL/includes/css.html" %}
+
+		<title>
+			ShortenURL | Réducteur d’URL, raccourcisseur de liens
+		</title>
+	</head>
+
+	<body>
+
+		{% include "shortenURL/includes/navigation.html" %}
+		
+
+		{% block content %}
+			
+		{% endblock content %}
+		
+		
+		{% include "shortenURL/layouts/footer.html" %}
+	</body>
+
+	{% include "shortenURL/includes/js.html" %}
+</html>
+{% endspaceless %}

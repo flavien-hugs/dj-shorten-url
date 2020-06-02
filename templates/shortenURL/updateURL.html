@@ -9,10 +9,11 @@
             <h1 class="page-heading single-col-max mx-auto">Réducteur d’URL</h1>
             <div class="page-intro single-col-max mx-auto">Simplifiez vos liens et suivez les statistiques de clic avancées</div>
             <div class="main-search-box pt-3 d-block mx-auto">
-                <form class="search-form w-100" method="post" action="{% url 'new_url' %}">
+                <form class="search-form w-100" method="post" action="">
                 	{% csrf_token %}
-                    <input id="{{ form.url.id_for_label }}" type="{{ form.url.name }}" placeholder="Collez votre URL longue ici et réduisez-la" name="{{ form.url.name }}" class="form-control search-input">
-                    <button type="submit" class="btn search-btn">
+                    <input id="{{ form.code.id_for_label }}" type="text" name="{{ form.code.name }}" value="{{ object.code }}" class="form-control search-input">
+
+                    <button type="submit" value="Update" class="btn search-btn">
                         <i class="fas fa-arrow-alt-circle-right ml-2"></i>
                     </button>
                 </form>

@@ -1,27 +1,9 @@
 {% extends "shortenURL/layouts/base.html" %}
 
-
-{% block content %}
-
-    <div class="page-header theme-bg-dark py-5 text-center position-relative">
-        <div class="theme-bg-shapes-right"></div>
-        <div class="theme-bg-shapes-left"></div>
-        <div class="container">
-            <h1 class="page-heading single-col-max mx-auto">Réducteur d’URL</h1>
-            <div class="page-intro single-col-max mx-auto">Simplifiez vos liens et suivez les statistiques de clic avancées</div>
-            <div class="main-search-box pt-3 d-block mx-auto">
-                <form class="search-form w-100">
-                    <input type="text" placeholder="Collez votre URL longue ici et réduisez-la" name="search" class="form-control search-input">
-                    <button type="submit" class="btn search-btn" value="Search">
-                        <i class="fas fa-arrow-alt-circle-right ml-2"></i>
-                    </button>
-                </form>
-            </div>
-
-            <p class="text-white small py-3">En utilisant notre service, vous acceptez les conditions d’utilisation et la politique de confidentialité.</p>
-        </div>
-    </div><!--end page-header-->
-    
-    {% block listURL %}{% include "shortenURL/layouts/listeURL.html" %}{% endblock listURL %}
-    {% block cta %}{% include "shortenURL/layouts/cta.html" %}{% endblock cta %}
-{% endblock content %}
+{% spaceless %}
+    {% block content %}
+        {% block cta %}{% include "shortenURL/layouts/cta.html" %}{% endblock cta %}
+        
+        {% block listURL %}{% include "shortenURL/layouts/listeURL.html" %}{% endblock listURL %}
+    {% endblock content %}
+{% endspaceless %}

@@ -28,13 +28,14 @@ SECRET_KEY = get_env_variable('SECRET_KEY', '0ic*=)8h6s(@q1wldcfdeo!i*^a)t)=6&=k
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 TEMPLATE_DEBUG = True
-
+SITE_ID = 1
 ALLOWED_HOSTS = []
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'django.contrib.sites',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

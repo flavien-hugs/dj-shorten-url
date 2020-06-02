@@ -1,0 +1,54 @@
+{% spaceless %}
+<section class="docs-section" id="item-1-1">
+    <div class="container">
+        <div class="table-responsive my-4">
+            <table class="table table-bordered">
+                <tbody>
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Lien réduit</th>
+                            <th scope="col">Lien original</th>
+                            <th scope="col">Vues/Clics</th>
+                            <th scope="col">Modifier</th>
+                            <th scope="col">Supprimer</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% for short in object_list %}
+                        <tr>
+                            <th scope="row">{{ forloop.counter }}</th>
+                            <td>
+                                <a href="http://{{ request.get_host }}{% url 'redirect_url' short.code %}" target="_blank">
+                                    https://{{ request.get_host }}{% url 'redirect_url' short.code %}
+                                </a>
+                            </td>
+
+                            <td class="text-secondary">
+                                {{ short.url|truncatewords:10 }}
+                            </td>
+
+                            <td class="text-success text-center">
+                                <i class="fas fa-eye mr-2"></i> {{ short.nb_acces }}
+                            </td>
+
+                            <td class="text-center"><a href="{% url 'update_url' short.code %}">
+                                <i class="fas fa-edit mr-2"></i></a>
+                            </td>
+                            <td class="text-center"><a href="{% url 'delete_url' short.code %}">
+                                <i class="fas fa-trash-alt mr-2"></i></a>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <td>Aucune url disponible pour le moment.</td>
+                        {% endfor %}
+                    </tbody>
+                </tbody>
+            </table>
+
+            {% include "shortenURL/includes/pagination.html" %}
+        </div>
+    </div>
+</section>
+{% endspaceless %}

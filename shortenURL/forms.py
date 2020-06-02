@@ -9,3 +9,9 @@ class ShortenForm(forms.ModelForm):
 	class Meta:
 		model = Shorten
 		fields = ['url']
+
+class ShortenFormCode(forms.ModelForm):
+
+	class Meta:
+		model = Shorten
+		fields = ['code']

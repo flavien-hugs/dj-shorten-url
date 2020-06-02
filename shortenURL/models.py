@@ -12,6 +12,10 @@ class Shorten(models.Model):
     date = models.DateField("Date d'enregistrement", auto_now_add=True)
     nb_acces = models.IntegerField('Nombre de vues', default=0)
 
+    class Meta:
+        verbose_name = "Raccourcisseur d'URL"
+        verbose_name_plural = "Raccourcisseurs d'URL"
+
     def __str__(self):
         return "[{0}] {1}".format(self.code, self.url)
 
@@ -26,8 +30,3 @@ class Shorten(models.Model):
         carac = string.ascii_letters + string.ascii_uppercase + string.digits
         random_carac = [random.choice(carac) for _ in range(nb_carac)]
         self.code = ''.join(random_carac)
-
-
-    class Meta:
-        verbose_name = "Raccourcisseur d'URL"
-        verbose_name_plural = "Raccourcisseurs d'URL"
