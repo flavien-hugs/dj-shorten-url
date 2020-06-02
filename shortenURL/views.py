@@ -6,7 +6,7 @@ from django.views.generic.list import ListView
 from django.urls import reverse_lazy, reverse
 
 from shortenURL.models import Shorten
-from shortenURL.forms import ShortenForm, ShortenFormCode
+from shortenURL.forms import ShortenForm
 
 
 # CBV : Liste URL
@@ -32,17 +32,16 @@ class CreateNewURL(CreateView):
 # CBV : Update URL 
 class UpdateURL(UpdateView):
     model = Shorten
-    form_class = ShortenFormCode
+    form_class = ShortenForm
     template_name = 'shortenURL/updateURL.html'
     success_url = reverse_lazy('liste_url')
 
     def get_object(self, queryset=None):
-        code = self.kwargs.get('code',None)
-        print(code)
+        code = self.kwargs.get('code', None)
         return get_object_or_404(Shorten, code=code)
 
     def form_valid(self, queryset=None):
-        form = ShortenFormCode(instance=self.get_object)
+        form = ShortenForm(instance=self.get_object)
         form.save()
         return HttpResponseRedirect(self.get_success_url())
 
