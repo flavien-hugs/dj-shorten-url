@@ -21,7 +21,7 @@ INSTALLED_APPS += ['whitenoise.runserver_nostatic']
 MIDDLEWARE += ['whitenoise.middleware.WhiteNoiseMiddleware']
 #  Add configuration for static files storage using whitenoise
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['unsta-shortenurl.herokuapp.com']
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # Simplified static file serving.
