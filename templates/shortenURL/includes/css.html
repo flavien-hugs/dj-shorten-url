@@ -1,6 +1,6 @@
-{% load static %}
+{% load static %}{% get_static_prefix as STATIC_PREFIX %}
 
 <!-- Google Font -->
 <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" type="text/css" media="screen" href="{% static "assets/css/custom.css" %}">
+<link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_PREFIX }}assets/css/custom.css">
