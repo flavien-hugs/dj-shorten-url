@@ -1,6 +1,6 @@
 {% if is_paginated %}
-    <nav aria-label="Page navigation example" class="justify-content-center">
-        <ul class="pagination pl-0">
+    <nav aria-label="Page navigation example">
+        <ul class="pagination pl-0 justify-content-center">
             {% if page_obj.has_previous %}
                 <li class="page-item disabled">
                     <a href="{% url "liste_url" %}?page={{ page_obj.previous_page_number }}" class="page-link">Précédent</a>

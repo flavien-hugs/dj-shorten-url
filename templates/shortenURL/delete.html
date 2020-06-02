@@ -1,17 +1,27 @@
 {% extends "shortenURL/layouts/base.html" %}
+
 {% block content %}
 <div class="page-content">
    <div class="container">
       <div class="docs-overview py-5">
-         <div class="row justify-content-center">
-            <h1>Êtes-vous sûr de vouloir supprimer cette URL ?</h1>
+         <div class="row ">
+            <div class="col text-center">
+               <h1>Êtes-vous sûr de vouloir supprimer cette URL ?</h1>
+               <p>
+                  {{ object.code }} -&gt; {{ object.url }} (créée le {{ object.date|date:"DATE_FORMAT" }})
+               </p>
 
-            <p>{{ object.code }} -&gt; {{ object.url }} (créée le {{ object.date|date:"DATE_FORMAT" }})</p>
+               <form method="POST">
+                  {% csrf_token %}
 
-            <form method="post" action="">
-               {% csrf_token %}
-               <input type="submit" value"Oui, supprime moi ça" /> - <a href="{% url "liste_url" %}">Pas trop chaud en fait</a>
-            </form>
+                  <div class="d-flex justify-content-center">
+                         
+                     <a class="btn btn-md btn-link pr-2 px-4" href="{% url "liste_url" %}">Annuler</a>
+
+                     <input type="submit" value="supprimer" class="btn btn-md btn-danger px-4">
+                  </div>
+               </form>
+            </div>
          </div>
       </div>
    </div>
