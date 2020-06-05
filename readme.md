@@ -1,6 +1,6 @@
 # [shortenURL](https://github.com/flavien-hugs/shortenURL) - réducteur d'URL, raccoucisseur de liens
 
-[![x-django](https://img.shields.io/badge/Shorten-URL-brightgreen.svg)](https://github.com/flavien-hugs/shortenURL)
+[![shortenURL](https://img.shields.io/badge/Shorten-URL-brightgreen.svg)](https://unsta-shortenurl.herokuapp.com/)
 [![Django](https://img.shields.io/badge/Django-Version3-success.svg)](http://www.djangoproject.com)
 
 Cette plateforme a été développé et testé avec [python 3.6](https://www.python.org)
