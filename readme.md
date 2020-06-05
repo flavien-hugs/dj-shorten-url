@@ -1,7 +1,7 @@
-### [shortenURL](https://github.com/flavien-hugs/shortenURL) - réducteur d'URL, raccoucisseur de liens
+# [shortenURL](https://github.com/flavien-hugs/shortenURL) - réducteur d'URL, raccoucisseur de liens
 
-![[x-django](https://github.com/flavien-hugs/shortenURL)](https://img.shields.io/badge/Shorten-URL-brightgreen)
-![[Django](http://www.djangoproject.com)](https://img.shields.io/badge/Django-Version3-success)
+[![x-django](https://img.shields.io/badge/Shorten-URL-brightgreen.svg)](https://github.com/flavien-hugs/shortenURL)
+[![Django](https://img.shields.io/badge/Django-Version3-success)](http://www.djangoproject.com)
 
 Cette plateforme a été développé et testé avec [python 3.6](http://www.python.org)
 et [Django3](http://www.djangoproject.com) version LTS.

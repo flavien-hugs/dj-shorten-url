@@ -41,7 +41,7 @@ class UpdateURL(UpdateView):
         code = self.kwargs.get('code', None)
         return get_object_or_404(Shorten, code=code)
 
-    def form_valid(self, queryset=None):
+    def form_valid(self, form):
         form = ShortenForm(instance=self.get_object)
         form.save()
         return HttpResponseRedirect(self.get_success_url())
@@ -53,7 +53,7 @@ class DeleteURL(DeleteView):
     template_name = 'shortenURL/delete.html'
     success_url = reverse_lazy('liste_url')
 
-    def form_valid(self, queryset=None):
+    def form_valid(self):
         self.object = form.save()
         return HttpResponseRedirect(self.get_success_url())
 
