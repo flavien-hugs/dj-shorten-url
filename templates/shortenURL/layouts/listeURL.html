@@ -10,7 +10,7 @@
                             <th scope="col">Lien réduit</th>
                             <th scope="col">Lien original</th>
                             <th scope="col">Vues/Clics</th>
-                            <th scope="col">Modifier</th>
+                            <!--<th scope="col">Modifier</th>-->
                             <th scope="col">Supprimer</th>
                         </tr>
                     </thead>
@@ -33,9 +33,9 @@
                                 <i class="fas fa-eye mr-2"></i> {{ short.nb_acces }}
                             </td>
 
-                            <td class="text-center"><a href="{% url 'update_url' short.code %}">
+                            <!--<td class="text-center"><a href="{% url 'update_url' short.code %}">
                                 <i class="fas fa-edit mr-2"></i></a>
-                            </td>
+                            </td>-->
                             <td class="text-center"><a href="{% url 'delete_url' short.code %}">
                                 <i class="fas fa-trash-alt mr-2"></i></a>
                             </td>

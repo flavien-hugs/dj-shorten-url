@@ -1,8 +1,7 @@
 # shortenURL/views.py
 
 from django.shortcuts import redirect, get_object_or_404
-from django.views.generic.edit import CreateView, UpdateView,\
-    DeleteView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.list import ListView
 from django.urls import reverse_lazy, reverse
 
@@ -65,7 +64,9 @@ class DeleteURL(DeleteView):
 # Fonction redirect
 def redirection(request, code):
     url = get_object_or_404(Shorten, code=code)
-    url.nb_acces += 1
-    url.save()
-
+    session_key = 'vues_{}'.format(url.pk)
+    if not request.session.get(session_key, False):
+        url.nb_acces += 1
+        url.save()
+        request.session[session_key] = True
     return redirect(url.url, permanent=True)
